@@ -8,7 +8,7 @@ import os
 def load_data():
     # Menghasilkan path absolut file CSV, relatif terhadap lokasi file ini.
     filepath = os.path.join(os.path.dirname(__file__), 'kidney-disease-clear.csv')
-    
+
     # Periksa apakah file CSV tersedia.
     if not os.path.exists(filepath):
         st.error(f"File CSV tidak ditemukan di: {filepath}")
@@ -17,6 +17,9 @@ def load_data():
     df = pd.read_csv(filepath)
     
     # Daftar nama kolom fitur yang harus ada di dalam CSV.
+
+    df.columns = df.columns.str.strip()
+
     feature_columns = ["bp", "sg", "al", "su", "rbc", "pc", "pcc", "ba",
                        "bgr", "bu", "sc", "sod", "pot", "hemo", "pcv", "wc",
                        "rc", "htn", "dm", "cad", "appet", "pe", "ane"]
